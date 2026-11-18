@@ -1,0 +1,9 @@
+{
+  "functions": {
+    "api/og.js": { "includeFiles": "public/fonts/**" },
+    "api/page.js": { "includeFiles": "public/index.html" }
+  },
+  "rewrites": [
+    { "source": "/", "has": [{ "type": "query", "key": "g" }], "destination": "/api/page" }
+  ]
+}
