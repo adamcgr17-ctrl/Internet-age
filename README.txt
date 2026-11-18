@@ -1,4 +1,4 @@
-INTERNET AGE: Vercel version with personalized group-link previews
+INTERNET AGE: live at internetagetest.com (Vercel), with personalized group-link previews
 
 Same page as the static version. The difference: when someone pastes a leaderboard link (the ?g= links from
 "Challenge friends" and family mode) into iMessage, WhatsApp, Slack, Discord or X, the preview shows the names and
@@ -10,8 +10,8 @@ that goes over its monthly limits. Its 4 hours of function CPU covers roughly 70
 0.2 seconds each, which a real spike would pass.
 
 DEPLOY
-1. In public/app.html set your domain: CONFIG.SITE_URL (e.g. "https://internetage.lol/") and CONFIG.DISPLAY_URL
-   (e.g. "internetage.lol") near the top of the <script>, and the og:image / og:url tags in the <head>.
+1. public/app.html is set to internetagetest.com: CONFIG.SITE_URL and CONFIG.DISPLAY_URL near the top of the
+   <script>, and the og:image / og:url tags in the <head>. Change those to move the site to another domain.
 2. From this folder run:  npx vercel --prod
    (log in, accept the defaults; the framework preset is "Other"). Or push the folder to a GitHub repo and import it
    in the Vercel dashboard.
