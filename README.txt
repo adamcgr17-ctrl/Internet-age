@@ -10,7 +10,7 @@ that goes over its monthly limits. Its 4 hours of function CPU covers roughly 70
 0.2 seconds each, which a real spike would pass.
 
 DEPLOY
-1. In public/index.html set your domain: CONFIG.SITE_URL (e.g. "https://internetage.lol/") and CONFIG.DISPLAY_URL
+1. In public/app.html set your domain: CONFIG.SITE_URL (e.g. "https://internetage.lol/") and CONFIG.DISPLAY_URL
    (e.g. "internetage.lol") near the top of the <script>, and the og:image / og:url tags in the <head>.
 2. From this folder run:  npx vercel --prod
    (log in, accept the defaults; the framework preset is "Other"). Or push the folder to a GitHub repo and import it
@@ -20,7 +20,8 @@ Link previews only work on the production domain: Vercel puts a login in front o
 so chat apps can't fetch those.
 
 HOW IT WORKS
-- Normal visits get the static page from public/. No function runs.
+- Normal visits get the static page (public/app.html, served at "/"). No function runs. It is not named index.html
+  because Vercel serves a matching static file before applying rewrites, which would bypass the preview function.
 - "/" with ?g= is rewritten (vercel.json) to api/page.js, which serves the same index.html with that board's
   og:title, og:description and og:image filled in. Example title: "Grandma, Dad and 2 others posted their internet ages".
 - api/og.js draws the 1200x630 image from the ?g= data, using the fonts in public/fonts. A malformed link, or any
@@ -67,7 +68,7 @@ doesn't include, and their edge build imports a Node-only module. 1.0.1 rendered
 Vercel's edge-runtime emulator. package.json pins it exactly.
 
 FILES
-public/index.html, public/og.png      the site (same as the static version)
+public/app.html, public/og.png      the site (same as the static version)
 public/fonts/                         Silkscreen and Archivo Black, SIL Open Font License (license files included)
 api/page.js, api/og.js                the two functions
 lib/board.js                          reads the ?g= data, same format the page writes

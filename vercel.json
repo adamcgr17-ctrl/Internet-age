@@ -1,9 +1,26 @@
 {
   "functions": {
-    "api/og.js": { "includeFiles": "public/fonts/**" },
-    "api/page.js": { "includeFiles": "public/index.html" }
+    "api/og.js": {
+      "includeFiles": "public/fonts/**"
+    },
+    "api/page.js": {
+      "includeFiles": "public/app.html"
+    }
   },
   "rewrites": [
-    { "source": "/", "has": [{ "type": "query", "key": "g" }], "destination": "/api/page" }
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "g"
+        }
+      ],
+      "destination": "/api/page"
+    },
+    {
+      "source": "/",
+      "destination": "/app.html"
+    }
   ]
 }

@@ -1,6 +1,8 @@
 import { readFile } from "node:fs/promises";
 import { decodeBoard, previewText } from "../lib/board.js";
 
+// The page lives at public/app.html, not index.html: Vercel serves a static file that matches a path before
+// applying rewrites, so an index.html would answer "/" and this function would never see ?g= links.
 // Serves the normal page, but when the link carries a leaderboard (?g=), its link-preview tags
 // show that board's names and ages. If anything fails, the visitor still gets the page.
 
@@ -10,9 +12,9 @@ export async function GET(request) {
   const url = new URL(request.url);
   let html;
   try {
-    html = await readFile(new URL("../public/index.html", import.meta.url), "utf8");
+    html = await readFile(new URL("../public/app.html", import.meta.url), "utf8");
   } catch {
-    return Response.redirect(new URL(`/index.html${url.search}`, url), 302);
+    return Response.redirect(new URL(`/app.html${url.search}`, url), 302);
   }
   try {
     const g = url.searchParams.get("g") || "";
